@@ -6,15 +6,15 @@ on:
       - main
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/checkout@v4
+      - name: show python version
+        run: python3 --version
 
-      - name: build image
-        run: |
-          docker build -t hello-actions:${{ github.sha }} .
+      - name: build docker image
+        run: docker build -t hello-actions:${{ github.sha }} .
